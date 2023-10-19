@@ -16,12 +16,12 @@ class Book extends Model
 
     public function catrgories()
     {
-        $this->belongsTo(Category::class , 'book_author');
+        $this->belongsTo(Category::class);
     }
 
     public function publishers()
     {
-        $this->belongsTo(Publisher::class , 'book_author');
+        $this->belongsTo(Publisher::class);
     }
 
 }

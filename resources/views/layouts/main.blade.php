@@ -67,7 +67,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="ml-12 relative">
+                    @auth
+                    <div class="ml-16 relative">
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
                                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -117,10 +118,17 @@
                             </x-slot>
                         </x-dropdown>
                     </div>
+                    @elseauth
+                    <div>
+                        <a href="{{route('login')}}">{{__('login')}}</a>
+                        <a href="{{route('register')}}">{{__('register')}}</a>
+                        <a href=""></a>
+                    </div>
+                    @endauth
+
+
                 </div>
             </div>
-
-
         </nav>
 
 
@@ -129,7 +137,7 @@
             <main>
                 {{-- {{ $slot }} --}}
                 <div class="p-4">
-                    <h1>مرحبا</h1>
+                    @yield('content')
                 </div>
             </main>
         </div>
