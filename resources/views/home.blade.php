@@ -95,7 +95,7 @@
             <p class="text-sm">{{ __('There Is No Books To Show') }}</p>
         </div>
         @endif
-        @if($books->count() > 0)
+        @if($books->count() > 1)
         {{ $books->links() }}
         @endif
 

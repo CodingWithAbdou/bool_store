@@ -48,7 +48,7 @@
                                     الناشرون
                                 </span>
                             </a>
-                            <a href="#" class="text-gray-950  hover:text-gray-500  px-3 py-2 text-sm font-medium">
+                            <a href="{{ route('author.index') }}" class="text-gray-950  hover:text-gray-500  px-3 py-2 text-sm font-medium">
                                 <span>
                                     <i class='bx bx-edit-alt'></i>
                                 </span>

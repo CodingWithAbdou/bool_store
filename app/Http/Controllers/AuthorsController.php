@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\Book;
 use Illuminate\Http\Request;
+use Termwind\Components\Dd;
 
 class AuthorsController extends Controller
 {
@@ -12,7 +14,9 @@ class AuthorsController extends Controller
      */
     public function index()
     {
-        //
+        $title = 'المؤلفون ';
+        $authors = Author::paginate(12);
+        return view('authors.index'  , compact('title' , 'authors'));
     }
 
     /**
@@ -61,5 +65,20 @@ class AuthorsController extends Controller
     public function destroy(Author $author)
     {
         //
+    }
+
+
+    public function search(Request $request)
+    {
+        $title = __('نتائج البحث  ') . ' : ' . "$request->searchname";
+        $authors = Author::where('name' , 'like' , "%$request->searchname%")->paginate(12)->sortBy('name');
+        return view('authors.index' , compact('title' , 'authors'));
+    }
+    public function  list(Author $author)
+    {
+        $title = ' الكتب التابعة للمؤلف :' . $author->name;
+        $books = $author->books()->paginate(12);
+        // dd($books);
+        return view('home' , compact('title' , 'books'));
     }
 }

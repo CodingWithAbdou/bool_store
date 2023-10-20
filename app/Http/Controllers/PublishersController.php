@@ -68,6 +68,7 @@ class PublishersController extends Controller
     }
 
 
+
     public function search(Request $request)
     {
         $title = __('نتائج البحث عن ') . ' : ' . "$request->searchname";
