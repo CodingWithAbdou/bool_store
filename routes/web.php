@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PublishersController;
+use App\Models\Publisher;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +39,9 @@ Route::get('/book/show/{book}', [HomeController::class , 'show'])->name('book.sh
 
 Route::get('/category/search', [CategoriesController::class , 'search'])->name('category.search');
 Route::get('/category', [CategoriesController::class , 'index'])->name('category.index');
-Route::get('category/{category:name}', [HomeController::class , 'books'])->name('category.show');
+Route::get('category/{category:name}', [CategoriesController::class , 'list'])->name('category.list');
 
 
+Route::get('publisher/search', [PublishersController::class , 'search'])->name('publisher.search');
+Route::get('publisher', [PublishersController::class , 'index'])->name('publisher.index');
+Route::get('publisher/{publisher:name}', [PublishersController::class , 'list'])->name('publisher.list');

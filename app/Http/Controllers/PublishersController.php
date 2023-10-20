@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,10 @@ class PublishersController extends Controller
      */
     public function index()
     {
-        //
+        $title = 'الناشرون ';
+        $publishers = Publisher::paginate(12);
+        return view('publisher.index'  , compact('title' , 'publishers'));
+
     }
 
     /**
@@ -62,4 +66,20 @@ class PublishersController extends Controller
     {
         //
     }
+
+
+    public function search(Request $request)
+    {
+        $title = __('نتائج البحث عن ') . ' : ' . "$request->searchname";
+        $publishers = Publisher::where('name' , 'like' , "%$request->searchname%")->paginate(12);
+        return view('publisher.index' , compact('title' , 'publishers'));
+    }
+    public function  list(Publisher $publisher)
+    {
+        $title = 'الكتب حسب الناشر :' . $publisher->name;
+        $books = Book::where('publisher_id' ,  $publisher->id )->paginate(12);
+        return view('home' , compact('title' , 'books'));
+    }
+
+
 }

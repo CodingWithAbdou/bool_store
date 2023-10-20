@@ -40,7 +40,7 @@
                                     التصنيفات
                                 </span>
                             </a>
-                            <a href="#" class="text-gray-950  hover:text-gray-500  px-3 py-2 text-sm font-medium">
+                            <a href="{{ route('publisher.index') }}" class="text-gray-950  hover:text-gray-500  px-3 py-2 text-sm font-medium">
                                 <span>
                                     <i class='bx bxs-user-detail'></i>
                                 </span>

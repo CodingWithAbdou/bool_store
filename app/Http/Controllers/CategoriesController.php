@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class CategoriesController extends Controller
     public function index()
     {
         $title = 'التصنيفات ';
-        $categories = Category::all();
+        $categories = Category::paginate(12);
         return view('category.index'  , compact('title' , 'categories'));
     }
 
@@ -70,6 +71,13 @@ class CategoriesController extends Controller
         $title = __('نتائج البحث عن ') . ' : ' . "$request->searchname";
         $categories = Category::where('name' , 'like' , "%$request->searchname%")->paginate(12);
         return view('category.index' , compact('title' , 'categories'));
-
     }
+    public function  list(Category $category)
+    {
+        $title = 'الكتب حسب فئة :' . $category->name;
+        $books = Book::where('category_id' ,  $category->id )->paginate(12);
+        return view('home' , compact('title' , 'books'));
+    }
+
+
 }

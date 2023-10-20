@@ -22,18 +22,9 @@ class HomeController extends Controller
         return view('home' , compact('title' , 'books'));
     }
 
-    public function  books(Category $category)
-    {
-        $title = 'الكتب حسب فئة :' . $category->name;
-        $books = Book::where('category_id' ,  $category->id )->paginate(12);
-        return view('home' , compact('title' , 'books'));
-    }
 
     public function  show(Book $book)
     {
         return view('book.show' , compact('book'));
     }
-
-
-
 }

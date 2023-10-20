@@ -46,7 +46,7 @@
                                     <h5 class="text-xl font-semibold tracking-tight text-slate-900 max-h-[32px] overflow-hidden hover:text-slate-500">{{ $book->title  }}</h5>
                                 </a>
                                 @if($book->category != null)
-                                <a class="py-2 block" href="{{ route('category.show' , $book->category) }}">
+                                <a class="py-2 block" href="{{ route('category.list' , $book->category) }}">
                                     <span class="text-neutral-400  hover:text-slate-900 transition-colors">
                                         {{ $book->category->name }}
                                     </span>
