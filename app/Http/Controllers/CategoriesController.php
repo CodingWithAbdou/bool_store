@@ -12,7 +12,9 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $title = 'التصنيفات ';
+        $categories = Category::all();
+        return view('category.index'  , compact('title' , 'categories'));
     }
 
     /**
@@ -61,5 +63,13 @@ class CategoriesController extends Controller
     public function destroy(Category $category)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $title = __('نتائج البحث عن ') . ' : ' . "$request->searchname";
+        $categories = Category::where('name' , 'like' , "%$request->searchname%")->paginate(12);
+        return view('category.index' , compact('title' , 'categories'));
+
     }
 }

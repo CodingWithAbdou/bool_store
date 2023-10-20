@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,8 @@ Route::get('/search', [HomeController::class , 'search'])->name('search');
 
 Route::get('/book/show/{book}', [HomeController::class , 'show'])->name('book.show');
 
+Route::get('/category/search', [CategoriesController::class , 'search'])->name('category.search');
+Route::get('/category', [CategoriesController::class , 'index'])->name('category.index');
+Route::get('category/{category:name}', [HomeController::class , 'books'])->name('category.show');
 
-Route::get('/book/category/{book}', [HomeController::class , 'books'])->name('category.show');
 

@@ -193,5 +193,6 @@
     "sale": "تخفيض" ,
     "Add to cart" : "أضف إالي السلة" ,
     "Search" : "إبحث",
-    "There Is No Books To Show" : "لا توجد كتب لعرضها"
+    "There Is No Books To Show" : "لا توجد كتب لعرضها" ,
+    "There Is No Categoty To Show" : "لا توجد تصنيفات لعرضها"
 }

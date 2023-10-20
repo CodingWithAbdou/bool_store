@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container mx-auto">
-        <div class="w-[80%] mx-auto p-2 bg-white border rounded-md">
+        <div class="w-[70%] mx-auto p-2 bg-white border rounded-md">
             <div class="relative overflow-x-auto">
                 <table class="w-full text-sm  text-gray-500 dark:text-gray-400 ">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
@@ -46,13 +46,15 @@
                                 </td>
                             </tr>
                         @endif
-                        @if($book->descrption)
+                        @if($book->description)
                             <tr class="bg-white dark:bg-gray-800  border-b">
-                                <td class="px-6 py-4 w-3/12 text-blod">
+                                <td class="px-6 py-4  text-blod flex w-full ">
                                     حول الكتاب
                                 </td>
-                                <td class="px-6 py-4">
-                                    {{$book->descrption}}
+                                <td class="px-6 py-4 ">
+                                    <p class="w-[80%] leading-6 ">
+                                        {{$book->description}}
+                                    </p>
                                 </td>
                             </tr>
                         @endif

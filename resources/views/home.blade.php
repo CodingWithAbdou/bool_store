@@ -46,7 +46,7 @@
                                     <h5 class="text-xl font-semibold tracking-tight text-slate-900 max-h-[32px] overflow-hidden hover:text-slate-500">{{ $book->title  }}</h5>
                                 </a>
                                 @if($book->category != null)
-                                <a class="py-2 block" href="{{ route('category.show' , $book->id) }}">
+                                <a class="py-2 block" href="{{ route('category.show' , $book->category) }}">
                                     <span class="text-neutral-400  hover:text-slate-900 transition-colors">
                                         {{ $book->category->name }}
                                     </span>
@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <p>
-                                        <span class="text-3xl font-bold text-slate-900">$249</span>
+                                        <span class="text-3xl font-bold text-slate-900">${{ $book->price }}</span>
                                         <span class="text-sm text-slate-900 line-through">$299</span>
                                     </p>
                                     <a href="#" class="flex items-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,10 +22,10 @@ class HomeController extends Controller
         return view('home' , compact('title' , 'books'));
     }
 
-    public function  books(Book $book)
+    public function  books(Category $category)
     {
-        $title = 'الكتب حسب فئة :' . $book->category->name;
-        $books = Book::where('category_id' ,  $book->category->id )->paginate(12);
+        $title = 'الكتب حسب فئة :' . $category->name;
+        $books = Book::where('category_id' ,  $category->id )->paginate(12);
         return view('home' , compact('title' , 'books'));
     }
 

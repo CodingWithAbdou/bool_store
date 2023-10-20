@@ -32,7 +32,7 @@
                         <div class="hidden sm:ml-6 sm:block">
                             <div class="flex items-center justify-center">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                            <a href="#" class="text-gray-950 hover:text-gray-500  px-3 py-2 text-sm font-medium">
+                            <a href="{{ route('category.index') }}" class="text-gray-950 hover:text-gray-500  px-3 py-2 text-sm font-medium">
                                 <span>
                                     <i class='bx bx-category-alt'></i>
                                 </span>
