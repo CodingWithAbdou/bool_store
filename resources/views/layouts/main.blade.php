@@ -26,7 +26,7 @@
             <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div class="relative flex h-16 items-center justify-between">
                     <div>
-                        <a href=""><h1>متجر عبدو</h1></a>
+                        <a href="{{route('home')}}"><h1>لوقو الموقع</h1></a>
                     </div>
                     <div class="flex flex-1 items-center justify-center">
                         <div class="hidden sm:ml-6 sm:block">
@@ -136,7 +136,7 @@
             <!-- Page Content -->
             <main>
                 {{-- {{ $slot }} --}}
-                <div class="p-4">
+                <div class="py-4">
                     @yield('content')
                 </div>
             </main>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::middleware([
     'auth:sanctum',
@@ -26,3 +27,13 @@ Route::middleware([
         return view('layouts.main');
     })->name('dashboard');
 });
+
+
+Route::get('/', [HomeController::class , 'index'])->name('home');
+Route::get('/search', [HomeController::class , 'search'])->name('search');
+
+Route::get('/book/show/{book}', [HomeController::class , 'show'])->name('book.show');
+
+
+Route::get('/book/category/{book}', [HomeController::class , 'books'])->name('category.show');
+

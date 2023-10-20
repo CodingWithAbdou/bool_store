@@ -29,7 +29,7 @@ class BookSeeder extends Seeder
             'number_of_pages' => '288',
             'price' => '17',
             'isbn'=>'100000000000',
-            'cover_image' => 'images/1.png',
+            'cover_image' => 'images/one.png',
         ]);
 
         $book2 = Book::create([
@@ -41,7 +41,7 @@ class BookSeeder extends Seeder
             'number_of_pages' => '288',
             'price' => '22',
             'isbn'=>'100000000001',
-            'cover_image' => 'images/2.png',
+            'cover_image' => 'images/tow.png',
         ]);
 
         $book3 = Book::create([
@@ -55,7 +55,7 @@ class BookSeeder extends Seeder
             'number_of_pages' => '288',
             'price' => '18',
             'isbn'=>'100000000002',
-            'cover_image' => 'images/3.png',
+            'cover_image' => 'images/three.png',
         ]);
 
         $book4 = Book::create([
@@ -78,7 +78,7 @@ class BookSeeder extends Seeder
             'number_of_pages' => '288',
             'price' => '12',
             'isbn'=>'100000000003',
-            'cover_image' => 'images/4.png',
+            'cover_image' => 'images/sixiveour.png',
         ]);
 
         $book5 = Book::create([
@@ -96,7 +96,7 @@ class BookSeeder extends Seeder
             'number_of_pages' => '288',
             'price' => '24',
             'isbn'=>'100000000004',
-            'cover_image' => 'images/5.png',
+            'cover_image' => 'images/sixive.png',
         ]);
 
         $book6 = Book::create([
@@ -110,7 +110,7 @@ class BookSeeder extends Seeder
             'number_of_pages' => '288',
             'price' => '20',
             'isbn'=>'100000000005',
-            'cover_image' => 'images/6.png',
+            'cover_image' => 'images/six.png',
         ]);
     }
 }
