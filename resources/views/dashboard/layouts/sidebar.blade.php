@@ -30,12 +30,20 @@
 
           <!-- ### $Sidebar Menu ### -->
           <ul class="sidebar-menu scrollable pos-r">
-            <li class="nav-item mT-30 actived">
-              <a class="sidebar-link" href="index.html">
+            <li class="nav-item mT-30 ">
+              <a class="sidebar-link" href="{{route('admin.home')}}">
                 <span class="icon-holder">
                     <i class="fa-solid fa-house c-blue-300"></i>
                 </span>
                 <span class="title">الرئيسية</span>
+              </a>
+            </li>
+            <li class="nav-item mT-30 actived">
+              <a class="sidebar-link" href="{{route('book.index')}}">
+                <span class="icon-holder">
+                    <i class="fa-solid fa-book c-red-300"></i>
+                </span>
+                <span class="title">الكتب</span>
               </a>
             </li>
             {{-- <li class="nav-item dropdown">

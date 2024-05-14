@@ -8,7 +8,7 @@
                   </a>
                 </li>
                 <li class="header-name">
-                  test
+                  @yield('header-name')
                 </li>
               </ul>
               <ul class="nav-right">

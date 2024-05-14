@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\AuthorsController;
+use App\Http\Controllers\BooksController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PublishersController;
@@ -30,7 +32,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
 
 
 Route::get('/admin' , function () {
-    return view('dashboard.layouts.app');
+    return view('dashboard.home');
 });
 Route::get('/', [HomeController::class , 'index'])->name('home');
 Route::get('/search', [HomeController::class , 'search'])->name('search');
@@ -51,3 +53,15 @@ Route::get('publisher/{publisher}', [PublishersController::class , 'list'])->nam
 Route::get('author/search', [AuthorsController::class , 'search'])->name('author.search');
 Route::get('/author', [AuthorsController::class , 'index'])->name('author.index');
 Route::get('author/{author}', [AuthorsController::class , 'list'])->name('author.list');
+
+
+Route::get('/admin', [AdminsController::class , 'index'])->name('admin.home');
+
+Route::get('/books', [BooksController::class , 'index'])->name('book.index');
+Route::get('/books/create', [BooksController::class , 'create'])->name('book.create');
+Route::post('/books/store', [BooksController::class , 'store'])->name('book.store');
+Route::get('/books/show/{book}', [BooksController::class , 'show'])->name('book.show');
+Route::get('/books/edit/{book}', [BooksController::class , 'edit'])->name('book.edit');
+Route::post('/books/update/{book}', [BooksController::class , 'update'])->name('book.update');
+Route::delete('/books/destroy/{book}', [BooksController::class , 'destroy'])->name('book.destroy');
+
