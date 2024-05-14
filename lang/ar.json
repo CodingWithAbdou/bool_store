@@ -189,10 +189,12 @@
     "You may delete any of your existing tokens if they are no longer needed.": "يمكنك حذف أي من الرموز المميزة الموجودة لديك إذا لم تعد هناك حاجة إليها.",
     "You may not delete your personal team.": "لا يمكنك حذف فريقك الشخصي.",
     "You may not leave a team that you created.": "لا يمكنك مغادرة الفريق الذي أنشأته.",
-    "Your email address is unverified.": "لم يتم التحقق من عنوان بريدك الإلكتروني." ,
-    "sale": "تخفيض" ,
-    "Add to cart" : "أضف إالي السلة" ,
-    "Search" : "إبحث",
-    "There Is No Books To Show" : "لا توجد كتب لعرضها" ,
-    "There Is No Categoty To Show" : "لا توجد تصنيفات لعرضها"
+    "Your email address is unverified.": "لم يتم التحقق من عنوان بريدك الإلكتروني.",
+    "sale": "تخفيض",
+    "Add to cart": "أضف إالي السلة",
+    "Search": "إبحث",
+    "There Is No Books To Show": "لا توجد كتب لعرضها",
+    "There Is No Categoty To Show": "لا توجد تصنيفات لعرضها",
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب"
 }

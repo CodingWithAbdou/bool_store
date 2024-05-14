@@ -22,17 +22,16 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
+Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
     Route::get('/dashboard', function () {
         return view('layouts.main');
     })->name('dashboard');
 });
 
 
+Route::get('/admin' , function () {
+    return view('dashboard.layouts.app');
+});
 Route::get('/', [HomeController::class , 'index'])->name('home');
 Route::get('/search', [HomeController::class , 'search'])->name('search');
 

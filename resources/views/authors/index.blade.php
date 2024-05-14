@@ -9,7 +9,7 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th  class="px-6 py-3 rounded-lg">
-                                <h2 class="text-xl">عرض الناشرون</h2>
+                                <h2 class="text-xl">عرض {{$title }}</h2>
                             </th>
                         </tr>
                     </thead>

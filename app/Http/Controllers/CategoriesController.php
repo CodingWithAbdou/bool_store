@@ -6,7 +6,7 @@ use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CategoriesController extends Controller
+class  CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -74,8 +74,8 @@ class CategoriesController extends Controller
     }
     public function  list(Category $category)
     {
-        $title = 'الكتب حسب فئة :' . $category->name;
-        $books = Book::where('category_id' ,  $category->id )->paginate(12);
+        $title = 'الكتب حسب تصميف فئة : ' . $category->name;
+        $books =  $category->books()->paginate(12);
         return view('home' , compact('title' , 'books'));
     }
 

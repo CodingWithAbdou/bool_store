@@ -5,9 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>متجر كتب</title>
+        <title>متجر الكتب</title>
 
-        <!-- Fonts -->
+        <!-- Font Family-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" >
@@ -31,8 +31,7 @@
                     <div class="flex flex-1 items-center justify-center">
                         <div class="hidden sm:ml-6 sm:block">
                             <div class="flex items-center justify-center">
-                            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                            <a href="{{ route('category.index') }}" class="text-gray-950 hover:text-gray-500  px-3 py-2 text-sm font-medium">
+                            <a href="{{ route('category.index') }}" class="{{Route::current()->getName() == 'category.index' ? 'active' : ''}} relative text-gray-950 hover:text-gray-500  px-3 py-2 text-sm font-medium">
                                 <span>
                                     <i class='bx bx-category-alt'></i>
                                 </span>
@@ -40,7 +39,7 @@
                                     التصنيفات
                                 </span>
                             </a>
-                            <a href="{{ route('publisher.index') }}" class="text-gray-950  hover:text-gray-500  px-3 py-2 text-sm font-medium">
+                            <a href="{{ route('publisher.index') }}" class=" {{Route::current()->getName() == 'publisher.index' ? 'active' : ''}} relative text-gray-950  hover:text-gray-500  px-3 py-2 text-sm font-medium">
                                 <span>
                                     <i class='bx bxs-user-detail'></i>
                                 </span>
@@ -48,7 +47,7 @@
                                     الناشرون
                                 </span>
                             </a>
-                            <a href="{{ route('author.index') }}" class="text-gray-950  hover:text-gray-500  px-3 py-2 text-sm font-medium">
+                            <a href="{{ route('author.index') }}" class="{{Route::current()->getName() == 'author.index' ? 'active' : ''}} relative text-gray-950  hover:text-gray-500  px-3 py-2 text-sm font-medium">
                                 <span>
                                     <i class='bx bx-edit-alt'></i>
                                 </span>
@@ -69,23 +68,11 @@
                     </div>
                     @auth
                     <div class="ml-16 relative">
-                        <x-dropdown align="right" width="48">
+                        <x-dropdown align="left" width="48">
                             <x-slot name="trigger">
-                                @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                     <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
                                         <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                                     </button>
-                                @else
-                                    <span class="inline-flex rounded-md">
-                                        <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
-                                            {{ Auth::user()->name }}
-
-                                            <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                                            </svg>
-                                        </button>
-                                    </span>
-                                @endif
                             </x-slot>
 
                             <x-slot name="content" >
@@ -118,15 +105,12 @@
                             </x-slot>
                         </x-dropdown>
                     </div>
-                    @elseauth
-                    <div>
-                        <a href="{{route('login')}}">{{__('login')}}</a>
-                        <a href="{{route('register')}}">{{__('register')}}</a>
-                        <a href=""></a>
+                    @else
+                    <div >
+                        <a class="mx-2 text-sm" href="{{route('login')}}">{{__('login')}}</a>
+                        <a class="mx-2 text-sm"  href="{{route('register')}}">{{__('register')}}</a>
                     </div>
                     @endauth
-
-
                 </div>
             </div>
         </nav>
@@ -144,3 +128,15 @@
         @livewireScripts
     </body>
 </html>
+
+<style>
+    .active::after {
+        content: '';
+        width: 100%;
+        height: 2px;
+        background: rgb(0, 132, 255);
+        position: absolute ;
+        bottom: -15px;
+        left: 0;
+    }
+</style>

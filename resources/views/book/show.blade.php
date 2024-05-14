@@ -24,6 +24,16 @@
                                 </td>
                             </tr>
                         @endif
+                        @if($book->isbn)
+                            <tr class="bg-white dark:bg-gray-800  border-b">
+                                <td class="px-6 py-4 w-3/12 text-blod">
+                                    الرقم التسلسلي
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{$book->isbn}}
+                                </td>
+                            </tr>
+                        @endif
                         @if($book->cover_image)
                             <tr class="bg-white dark:bg-gray-800 border-b">
                                 <td class="px-6 py-4  text-blod flex w-full ">
@@ -33,16 +43,6 @@
                                     <div class="p-2 border rounded-md">
                                         <img class="border rounded-md" src="{{asset('storage/' . $book->cover_image)}}" alt="{{$book->title}}">
                                     </div>
-                                </td>
-                            </tr>
-                        @endif
-                        @if($book->isbn)
-                            <tr class="bg-white dark:bg-gray-800  border-b">
-                                <td class="px-6 py-4 w-3/12 text-blod">
-                                    الرقم التسلسلي
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{$book->isbn}}
                                 </td>
                             </tr>
                         @endif
