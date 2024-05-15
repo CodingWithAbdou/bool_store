@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PublishersController;
 use App\Models\Publisher;
 use Illuminate\Support\Facades\Route;
+use Laravel\Jetstream\Rules\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,11 +58,29 @@ Route::get('author/{author}', [AuthorsController::class , 'list'])->name('author
 
 Route::get('/admin', [AdminsController::class , 'index'])->name('admin.home');
 
-Route::get('/books', [BooksController::class , 'index'])->name('book.index');
-Route::get('/books/create', [BooksController::class , 'create'])->name('book.create');
-Route::post('/books/store', [BooksController::class , 'store'])->name('book.store');
-Route::get('/books/show/{book}', [BooksController::class , 'show'])->name('book.show');
-Route::get('/books/edit/{book}', [BooksController::class , 'edit'])->name('book.edit');
-Route::post('/books/update/{book}', [BooksController::class , 'update'])->name('book.update');
-Route::delete('/books/destroy/{book}', [BooksController::class , 'destroy'])->name('book.destroy');
+
+
+Route::prefix('/dashboard')->middleware('can:update-books')->group( function(){
+    // books
+    Route::get('/books', [BooksController::class , 'index'])->name('book.index');
+    Route::get('/books/create', [BooksController::class , 'create'])->name('book.create');
+    Route::post('/books/store', [BooksController::class , 'store'])->name('book.store');
+    Route::get('/books/show/{book}', [BooksController::class , 'show'])->name('book.show');
+    Route::get('/books/edit/{book}', [BooksController::class , 'edit'])->name('book.edit');
+    Route::post('/books/update/{book}', [BooksController::class , 'update'])->name('book.update');
+    Route::delete('/books/{book}/destroy', [BooksController::class , 'destroy'])->name('book.destroy');
+
+
+    // categories
+    Route::get('/categories', [CategoriesController::class , 'indexhome'])->name('categories.admin.index');
+    Route::get('/categories/create', [CategoriesController::class , 'create'])->name('categories.create');
+    Route::post('/categories/store', [CategoriesController::class , 'store'])->name('categories.store');
+    Route::get('/categories/show/{categorie}', [CategoriesController::class , 'show'])->name('categories.show');
+    Route::get('/categories/edit/{categorie}', [CategoriesController::class , 'edit'])->name('categories.edit');
+    Route::post('/categories/update/{categorie}', [CategoriesController::class , 'update'])->name('categories.update');
+    Route::delete('/categories/{categorie}/destroy', [CategoriesController::class , 'destroy'])->name('categories.destroy');
+
+
+});
+
 

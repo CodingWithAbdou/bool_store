@@ -69,7 +69,6 @@
     }
     .cairo {
         font-family: 'Cairo', sans-serif !important;
-
     }
     .header-name {
         height: 65px;
@@ -103,6 +102,12 @@
 
         <!-- ### $App Screen Content ### -->
         <main class="main-content bgc-grey-100">
+          @if(Session::has('flash_message'))
+          <div class="alert alert-success" role="alert">
+            {{ session('flash_message') }}
+          </div>
+
+          @endif
             @yield('content')
         </main>
         <!-- ### $App Screen Footer ### -->
@@ -110,8 +115,8 @@
       </div>
     </div>
   </body>
-  <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
   @stack('script')
+  <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
 
 <script>
 

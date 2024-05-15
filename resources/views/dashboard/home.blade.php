@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-    <div class="row gap-20">
+    <div class="row ">
         <div class="col-md-3">
             <div class="layers bd bgc-white p-20">
                 <div class="layer w-100 mB-10">
@@ -22,7 +22,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="col-md-3">
             <div class="layers bd bgc-white p-20">

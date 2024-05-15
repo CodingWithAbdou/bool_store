@@ -1,5 +1,8 @@
 @extends('dashboard.layouts.app')
 
+@section('header-name')
+تعديل الكتاب
+@endsection
 
 @section('content')
     <div class="container mx-auto">
@@ -9,7 +12,7 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th colspan='2' class="px-6 py-3 rounded-lg">
-                                <h2 class="text-xl">عرض الكتاب</h2>
+                                <h2 class=" cairo">عرض الكتاب</h2>
                             </th>
                         </tr>
                     </thead>
@@ -136,12 +139,17 @@
                             <tr class="bg-white dark:bg-gray-800  border-b">
                                 <td colspan="2" class="px-6 py-4 " >
                                     <div class="flex items-center w-fit mx-auto rounded-md  px-5 py-2.5 text-center text-sm font-medium">
+                                        <form action="{{ route('book.destroy' , $book)}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+
                                         <a href="{{ route('book.edit' , $book) }}" class="btn cur-p btn-info btn-color me-2">
                                             <span class=""><i class="fa-solid fa-pencil "></i></span>
                                         </a>
-                                        <a href="{{ route('book.destroy' , $book) }}" class="btn cur-p btn-danger btn-color">
+                                        <button class="btn cur-p btn-danger btn-color" onclick="confirm('هل أنت متاكد ')">
                                             <span class=""><i class="fa-solid fa-trash "></i></span>
-                                        </a>
+                                        </button>
+                                    </form>
                                     </div>
                                 </td>
                             </tr>

@@ -30,6 +30,7 @@
 
           <!-- ### $Sidebar Menu ### -->
           <ul class="sidebar-menu scrollable pos-r">
+
             <li class="nav-item mT-30 ">
               <a class="sidebar-link" href="{{route('admin.home')}}">
                 <span class="icon-holder">
@@ -38,6 +39,7 @@
                 <span class="title">الرئيسية</span>
               </a>
             </li>
+
             <li class="nav-item mT-30 actived">
               <a class="sidebar-link" href="{{route('book.index')}}">
                 <span class="icon-holder">
@@ -46,6 +48,34 @@
                 <span class="title">الكتب</span>
               </a>
             </li>
+
+            <li class="nav-item mT-30 actived">
+              <a class="sidebar-link" href="{{route('categories.admin.index')}}">
+                <span class="icon-holder">
+                    <i class="fa-solid fa-layer-group  c-green-500"></i>
+                </span>
+                <span class="title">التصنيفات</span>
+              </a>
+            </li>
+
+            <li class="nav-item mT-30 actived">
+              <a class="sidebar-link" href="{{route('publisher.index')}}">
+                <span class="icon-holder">
+                    <i class="fa-solid fa-print  c-orange-500"></i>
+                </span>
+                <span class="title">دور النشر</span>
+              </a>
+            </li>
+
+            <li class="nav-item mT-30 actived">
+              <a class="sidebar-link" href="{{route('author.index')}}">
+                <span class="icon-holder">
+                    <i class="fa-solid fa-user-pen c-gray-500"></i>
+                </span>
+                <span class="title">الكاتبون</span>
+              </a>
+            </li>
+
             {{-- <li class="nav-item dropdown">
               <a class="dropdown-toggle" href="javascript:void(0);">
                 <span class="icon-holder">
