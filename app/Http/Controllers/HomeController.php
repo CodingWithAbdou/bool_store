@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Rating;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,5 +27,20 @@ class HomeController extends Controller
     public function  show(Book $book)
     {
         return view('book.show' , compact('book'));
+    }
+
+    public function  rate(Request $request , Book $book , $value )
+    {
+        if(auth()->user()->bookRating($book) == null) {
+            $rating = new Rating();
+            $rating->book_id =  $book->id;
+            $rating->user_id =  auth()->user()->id;
+            $rating->value =  $value;
+            $rating->save();
+        }else {
+            $rate = auth()->user()->bookRating($book);
+            $rate->value =  $value;
+            $rate->save();
+        }
     }
 }

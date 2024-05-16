@@ -16,7 +16,7 @@
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+        @stack('style')
         <!-- Styles -->
         @livewireStyles
     </head>
@@ -100,7 +100,6 @@
                                 <!-- Authentication -->
                                 <form method="POST" action="{{ route('logout') }}" x-data>
                                     @csrf
-
                                     <x-dropdown-link href="{{ route('logout') }}"
                                                 @click.prevent="$root.submit();">
                                         {{ __('Log Out') }}
@@ -129,6 +128,7 @@
                 </div>
             </main>
         </div>
+        @stack('script')
         @livewireScripts
     </body>
 </html>

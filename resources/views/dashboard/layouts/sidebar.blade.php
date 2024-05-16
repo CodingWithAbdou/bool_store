@@ -76,14 +76,16 @@
               </a>
             </li>
 
-            <li class="nav-item mT-30 actived">
-              <a class="sidebar-link" href="{{route('users.index')}}">
-                <span class="icon-holder">
-                    <i class="fa-solid fa-users c-red-900"></i>
-                </span>
-                <span class="title">المستخدمون</span>
-              </a>
-            </li>
+            @can('update-users')
+                <li class="nav-item mT-30 actived">
+                <a class="sidebar-link" href="{{route('users.index')}}">
+                    <span class="icon-holder">
+                        <i class="fa-solid fa-users c-red-900"></i>
+                    </span>
+                    <span class="title">المستخدمون</span>
+                </a>
+                </li>
+            @endcan
 
             {{-- <li class="nav-item dropdown">
               <a class="dropdown-toggle" href="javascript:void(0);">

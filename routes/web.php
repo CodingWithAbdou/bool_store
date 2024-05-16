@@ -34,7 +34,10 @@ use Laravel\Jetstream\Rules\Role;
 Route::get('/', [HomeController::class , 'index'])->name('home');
 Route::get('/search', [HomeController::class , 'search'])->name('search');
 
-Route::get('/book/show/{book}', [HomeController::class , 'show'])->name('book.show');
+Route::get('/book/show/{book}', [HomeController::class , 'show'])->name('book.justshow');
+Route::get('/book/{book}/rate/{rate}', [HomeController::class , 'rate'])->name('book.rate');
+
+
 
 Route::get('/category/search', [CategoriesController::class , 'search'])->name('category.search');
 Route::get('/category', [CategoriesController::class , 'index'])->name('category.index');
@@ -90,9 +93,9 @@ Route::prefix('/dashboard')->middleware('can:update-books')->group( function(){
     Route::delete('/authors/{author}/destroy', [AuthorsController::class , 'destroy'])->name('authors.destroy');
 
     // users
-    Route::get('/users', [UsersController::class , 'index'])->name('users.index')->middleware('can:update-books');
-    Route::post('/users/update/{user}', [UsersController::class , 'update'])->name('users.update')->middleware('can:update-books');
-    Route::delete('/users/{user}/destroy', [UsersController::class , 'destroy'])->name('users.destroy')->middleware('can:update-books');
+    Route::get('/users', [UsersController::class , 'index'])->name('users.index')->middleware('can:update-users');
+    Route::post('/users/update/{user}', [UsersController::class , 'update'])->name('users.update')->middleware('can:update-users');
+    Route::delete('/users/{user}/destroy', [UsersController::class , 'destroy'])->name('users.destroy')->middleware('can:update-users');
 });
 
 
