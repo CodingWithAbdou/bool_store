@@ -14,7 +14,7 @@ class  CategoriesController extends Controller
     public function indexhome()
     {
         $categories = Category::all();
-        return view('admin.category.index'  , compact('title' , 'categories'));
+        return view('dashboard.category.index'  , compact('categories'));
     }
     public function index()
     {
@@ -25,10 +25,7 @@ class  CategoriesController extends Controller
 
     public function create()
     {
-        $categories = Category::all();
-        $publishers = Publisher::all();
-        $authors = Author::all();
-        return view('dashboard.books.create' , compact('authors' , 'publishers' , 'categories'));
+        return view('dashboard.category.create' );
     }
 
     /**
@@ -39,119 +36,65 @@ class  CategoriesController extends Controller
 
 
         $this->validate($request , [
-            'title' => 'required',
-            'isbn' => ['required' , 'alpha_num' ,  Rule::unique('books','isbn') ],
-            'cover_image' => 'required|image',
-            'category' => 'nullable',
-            'authors' => 'nullable',
-            'publisher' => 'nullable',
-            'description' => 'nullable',
-            'publish_year' => 'numeric|nullable',
-            'number_of_pages' => 'numeric|required',
-            'number_of_copies' => 'numeric|required',
-            'price' => 'numeric|required',
+            'name' => 'required',
         ]);
 
-        $book = new Book;
+        $category = new Category();
 
-        $book->title = $request->title;
-        $book->cover_image = $this->uploadImage( $request->cover_image );
-        $book->isbn = $request->isbn;
-        $book->category_id = $request->category;
-        $book->publisher_id = $request->publisher;
-        $book->description = $request->description;
-        $book->publish_year = $request->publish_year;
-        $book->number_of_pages = $request->number_of_pages;
-        $book->number_of_copies = $request->number_of_copies;
-        $book->price = $request->price;
-        $book->save();
+        $category->name = $request->name;
+        $category->description = $request->description;
+        $category->save();
 
-
-        $book->authors()->attach($request->authors);
-
-        session()->flash('flash_message', 'تمت إضافة الكتاب بنجاح');
-        return redirect(route('book.show' , $book));
+        session()->flash('flash_message', 'تمت إضافة التصنيف بنجاح');
+        return redirect(route('categories.show' , $category));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Book $book)
+    public function show(category $category)
     {
-        return view('dashboard.books.show', compact('book'));
+        return view('dashboard.category.show', compact('category'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Book $book)
+    public function edit(Category $category)
     {
-        $categories = Category::all();
-        $publishers = Publisher::all();
-        $authors = Author::all();
-        return view('dashboard.books.edit', compact('book' , 'categories' , "publishers" , 'authors'));
-
+        return view('dashboard.category.edit' , compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Book $book)
+    public function update(Request $request,Category $category)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'cover_image' => 'image',
-            'category' => 'nullable',
-            'authors' => 'nullable',
-            'publisher' => 'nullable',
-            'description' => 'nullable',
-            'publish_year' => 'numeric|nullable',
-            'number_of_pages' => 'numeric|required',
-            'number_of_copies' => 'numeric|required',
-            'price' => 'numeric|required',
+            'name' => 'required',
         ]);
-        $book->title = $request->title;
-        if ($request->has ('cover_image')) {
-            Storage::disk('public')->delete($book->cover_image);
-            $book->cover_image = $this->uploadImage($request->cover_image);
-        }
-        $book->isbn = $request->isbn;
-        $book->category_id = $request->category;
-        $book->publisher_id = $request->publisher;
-        $book->description = $request->description;
-        $book->publish_year = $request->publish_year;
-        $book->number_of_pages = $request->number_of_pages;
-        $book->number_of_copies = $request->number_of_copies;
-        $book->price = $request->price;
+         $category->name = $request->name;
+        $category->description = $request->description;
 
-        if ($book->isDirty('isbn')) {
-            $this->validate($request, [
-                'isbn' => ['required', 'alpha_num', Rule::unique('books', 'isbn')],
-            ]);
-        }
 
-        $book->save();
+        $category->save();
 
-        $book->authors()->detach();
-        $book->authors()->attach($request->authors);
-        session()->flash('flash_message', 'تم تعديل الكتاب بنجاح');
-        return redirect(route('book.show', $book));
-
+        session()->flash('flash_message', 'تم تعديل التصنيف بنجاح');
+        return redirect(route('categories.show', $category));
 
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Book $book)
+    public function destroy(Category $category)
     {
-        Storage::disk('public')->delete($book->cover_image);
 
-        $book->delete();
+        $category->delete();
 
-        session()->flash('flash_message','تم حذف الكتاب بنجاح');
+        session()->flash('flash_message','تم حذف التصنيف بنجاح');
 
-        return redirect(route('book.index'));
+        return redirect(route('categories.admin.index'));
 
     }
 

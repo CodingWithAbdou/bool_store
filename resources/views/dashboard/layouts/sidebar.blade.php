@@ -5,7 +5,7 @@
           <div class="sidebar-logo">
             <div class="peers ai-c fxw-nw">
               <div class="peer peer-greed">
-                <a class="sidebar-link td-n" href="index.html">
+                <a class="sidebar-link td-n" href="{{route('home')}}">
                   <div class="peers ai-c fxw-nw">
                     <div class="peer">
                       <div class="logo d-flex">
@@ -59,7 +59,7 @@
             </li>
 
             <li class="nav-item mT-30 actived">
-              <a class="sidebar-link" href="{{route('publisher.index')}}">
+              <a class="sidebar-link" href="{{route('publishers.admin.index')}}">
                 <span class="icon-holder">
                     <i class="fa-solid fa-print  c-orange-500"></i>
                 </span>
@@ -68,11 +68,20 @@
             </li>
 
             <li class="nav-item mT-30 actived">
-              <a class="sidebar-link" href="{{route('author.index')}}">
+              <a class="sidebar-link" href="{{route('authors.admin.index')}}">
                 <span class="icon-holder">
                     <i class="fa-solid fa-user-pen c-gray-500"></i>
                 </span>
-                <span class="title">الكاتبون</span>
+                <span class="title">المؤلفون</span>
+              </a>
+            </li>
+
+            <li class="nav-item mT-30 actived">
+              <a class="sidebar-link" href="{{route('users.index')}}">
+                <span class="icon-holder">
+                    <i class="fa-solid fa-users c-red-900"></i>
+                </span>
+                <span class="title">المستخدمون</span>
               </a>
             </li>
 

@@ -80,7 +80,11 @@
                                 <div class="block px-4 py-2 text-xs text-gray-400">
                                     {{ __('Manage Account') }}
                                 </div>
-
+                                @can('update-books')
+                                    <x-dropdown-link href="{{ route('admin.home') }}">
+                                        {{ __('Dashboord') }}
+                                    </x-dropdown-link>
+                                @endcan
                                 <x-dropdown-link href="{{ route('profile.show') }}">
                                     {{ __('Profile') }}
                                 </x-dropdown-link>

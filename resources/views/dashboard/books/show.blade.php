@@ -135,7 +135,6 @@
                                 </td>
                             </tr>
                         @endif
-                        @if($book->number_of_copies > 0)
                             <tr class="bg-white dark:bg-gray-800  border-b">
                                 <td colspan="2" class="px-6 py-4 " >
                                     <div class="flex items-center w-fit mx-auto rounded-md  px-5 py-2.5 text-center text-sm font-medium">
@@ -153,7 +152,6 @@
                                     </div>
                                 </td>
                             </tr>
-                        @endif
                     </tbody>
                 </table>
             </div>

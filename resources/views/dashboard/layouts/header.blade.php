@@ -23,17 +23,20 @@
                   </a>
                   <ul class="dropdown-menu fsz-sm">
                     <li>
-                      <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                      <a href="{{route('profile.show')}}" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
                         <i class="fa-regular fa-user"></i>
                         <span>الملف الشخصي</span>
                       </a>
                     </li>
                     <li role="separator" class="divider"></li>
                     <li>
-                      <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                        <span>خروج</span>
-                      </a>
+                        <form class="d-b td-n pY-5 bgcH-grey-100 c-grey-700 px-3" method="POST" action="{{ route('logout') }}" x-data>
+                            @csrf
+                            <button href="ms-2" class="">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                <span>خروج</span>
+                              </button>
+                        </form>
                     </li>
                   </ul>
                 </li>

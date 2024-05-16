@@ -18,13 +18,16 @@ class PublishersController extends Controller
         return view('publisher.index'  , compact('title' , 'publishers'));
 
     }
+    public function indexhome()
+    {
+        $publishers = Publisher::all();
+        return view('dashboard.publisher.index'  , compact('publishers'));
+    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
-        //
+        return view('dashboard.publisher.create' );
     }
 
     /**
@@ -32,39 +35,69 @@ class PublishersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+        $this->validate($request , [
+            'name' => 'required',
+        ]);
+
+        $publisher = new publisher();
+
+        $publisher->name = $request->name;
+        $publisher->address = $request->address;
+        $publisher->save();
+
+        session()->flash('flash_message', 'تمت إضافة دار نشر بنجاح');
+        return redirect(route('publishers.show' , $publisher));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Publisher $publisher)
+    public function show(publisher $publisher)
     {
-        //
+        return view('dashboard.publisher.show', compact('publisher'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Publisher $publisher)
+    public function edit(publisher $publisher)
     {
-        //
+        return view('dashboard.publisher.edit' , compact('publisher'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Publisher $publisher)
+    public function update(Request $request,publisher $publisher)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+         $publisher->name = $request->name;
+        $publisher->address = $request->address;
+
+
+        $publisher->save();
+
+        session()->flash('flash_message', 'تم تعديل دار نشر بنجاح');
+        return redirect(route('publishers.show', $publisher));
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Publisher $publisher)
+    public function destroy(publisher $publisher)
     {
-        //
+
+        $publisher->delete();
+
+        session()->flash('flash_message','تم حذف دار نشر بنجاح');
+
+        return redirect(route('publishers.admin.index'));
+
     }
 
 
@@ -81,6 +114,4 @@ class PublishersController extends Controller
         $books = Book::where('publisher_id' ,  $publisher->id )->paginate(12);
         return view('home' , compact('title' , 'books'));
     }
-
-
 }
