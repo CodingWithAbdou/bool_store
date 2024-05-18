@@ -19,6 +19,9 @@
         @stack('style')
         <!-- Styles -->
         @livewireStyles
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     </head>
     <body class="font-sans antialiased">
 
@@ -31,6 +34,17 @@
                     <div class="flex flex-1 items-center justify-center">
                         <div class="hidden sm:ml-6 sm:block">
                             <div class="flex items-center justify-center">
+                            @auth
+                                <a href="{{ route('show.cart') }}" class="{{Route::current()->getName() == 'category.index' ? 'active' : ''}} relative text-gray-950 hover:text-gray-500  px-3 py-2 text-sm font-medium">
+                                    <span class="relative">
+                                        <i class='bx bx-cart-alt'></i>
+                                        <span class="badge bg-gray-300 text-white  absolute bottom-[-6px] right-[-9px] w-4 h-4 flex items-center justify-center rounded-full text-xs">{{ auth()->user()->booksInCart()->count() }}</span>
+                                    </span>
+                                    <span>
+                                        العربة
+                                    </span>
+                                </a>
+                            @endauth
                             <a href="{{ route('category.index') }}" class="{{Route::current()->getName() == 'category.index' ? 'active' : ''}} relative text-gray-950 hover:text-gray-500  px-3 py-2 text-sm font-medium">
                                 <span>
                                     <i class='bx bx-category-alt'></i>
@@ -55,14 +69,17 @@
                                     المؤلفون
                                 </span>
                             </a>
-                            <a href="#" class="text-gray-950  hover:text-gray-500  px-3 py-2 text-sm font-medium">
-                                <span>
-                                    <i class='bx bx-cart-alt'></i>
-                                </span>
-                                <span>
-                                    مشترياتي
-                                </span>
-                            </a>
+                            @auth
+                                <a href="#" class="text-gray-950  hover:text-gray-500  px-3 py-2 text-sm font-medium">
+                                    <span>
+                                        <i class='bx bx-basket'></i>
+                                    </span>
+                                    <span>
+                                        مشترياتي
+                                    </span>
+                                </a>
+                            @endauth
+
                             </div>
                         </div>
                     </div>
@@ -128,9 +145,12 @@
                 </div>
             </main>
         </div>
-        @stack('script')
-        @livewireScripts
     </body>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    @stack('script')
+    @livewireScripts
 </html>
 
 <style>

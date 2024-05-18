@@ -29,17 +29,17 @@ class HomeController extends Controller
         return view('book.show' , compact('book'));
     }
 
-    public function  rate(Request $request , Book $book , $value )
+    public function  rate(Request $request , Book $book  )
     {
         if(auth()->user()->bookRating($book) == null) {
             $rating = new Rating();
             $rating->book_id =  $book->id;
             $rating->user_id =  auth()->user()->id;
-            $rating->value =  $value;
+            $rating->value =  $request->value;
             $rating->save();
         }else {
             $rate = auth()->user()->bookRating($book);
-            $rate->value =  $value;
+            $rate->value =  $request->value;
             $rate->save();
         }
     }

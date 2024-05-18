@@ -3,9 +3,11 @@
 use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\AuthorsController;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PublishersController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\UsersController;
 use App\Models\Publisher;
 use Illuminate\Support\Facades\Route;
@@ -35,7 +37,11 @@ Route::get('/', [HomeController::class , 'index'])->name('home');
 Route::get('/search', [HomeController::class , 'search'])->name('search');
 
 Route::get('/book/show/{book}', [HomeController::class , 'show'])->name('book.justshow');
-Route::get('/book/{book}/rate/{rate}', [HomeController::class , 'rate'])->name('book.rate');
+Route::post('/book/{book}/rate', [HomeController::class , 'rate'])->name('book.rate');
+
+Route::post('/addcart', [CartController::class , 'addToCart'])->name('add.cart');
+Route::get('/showcart', [CartController::class , 'showCart'])->name('show.cart');
+Route::post('/removeitem', [CartController::class , 'removeItem'])->name('remove.item');
 
 
 
@@ -99,3 +105,6 @@ Route::prefix('/dashboard')->middleware('can:update-books')->group( function(){
 });
 
 
+//// credit card
+Route::get('/checkout', [PurchaseController::class, 'creditCheckout'])->name('credit.checkout');
+Route::post('/checkout', [PurchaseController::class, 'purchase'])->name('products.purchase');
