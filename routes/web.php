@@ -106,5 +106,5 @@ Route::prefix('/dashboard')->middleware('can:update-books')->group( function(){
 
 
 //// credit card
-Route::get('/checkout', [PurchaseController::class, 'creditCheckout'])->name('credit.checkout');
-Route::post('/checkout', [PurchaseController::class, 'purchase'])->name('products.purchase');
+// Route::get('/checkout', [PurchaseController::class, 'creditCheckout'])->name('credit.checkout');
+// Route::post('/checkout', [PurchaseController::class, 'purchase'])->name('products.purchase');

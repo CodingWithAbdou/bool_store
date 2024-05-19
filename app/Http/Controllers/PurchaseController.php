@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\orderMail;
 use Illuminate\Http\Request;
 use App\models\User;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use Carbon\Carbon;
-use App\Mail\OrderMail;
 use Illuminate\Support\Facades\Mail;
-use App\models\Shopping;
+
+use function Laravel\Prompts\error;
 
 class PurchaseController extends Controller
 {
@@ -19,6 +20,12 @@ class PurchaseController extends Controller
         $this->provider->setApiCredentials(config('paypal'));
         $token = $this->provider->getAccessToken();
         $this->provider->setAccessToken($token);
+    }
+
+
+    public function sendOrderConfirmationMail($order, $user)
+    {
+        Mail::to($user->email)->send(new OrderMail($order, $user));
     }
 
     public function createPayment(Request $request) {
@@ -57,6 +64,7 @@ class PurchaseController extends Controller
         if($result['status'] === 'COMPLETED') {
             $user = User::find($data['userId']);
             $books = $user->booksInCart;
+            $this->sendOrderConfirmationMail($books, $user);
 
             foreach($books as $book) {
                 $bookPrice = $book->price;
@@ -68,17 +76,17 @@ class PurchaseController extends Controller
         return response()->json($result);
     }
 
-    public function creditCheckout(Request $request) {
-        $intent = auth()->user()->createSetupIntent();
+    // public function creditCheckout(Request $request) {
+    //     $intent = auth()->user()->createSetupIntent();
 
-        $userId = auth()->user()->id;
-        $books = User::find($userId)->booksInCart;
-        $total = 0;
-        foreach($books as $book) {
-            $total += $book->price * $book->pivot->number_of_copies;
-        }
-        return view('credit.checkout', compact('total', 'intent'));
-    }
+    //     $userId = auth()->user()->id;
+    //     $books = User::find($userId)->booksInCart;
+    //     $total = 0;
+    //     foreach($books as $book) {
+    //         $total += $book->price * $book->pivot->number_of_copies;
+    //     }
+    //     return view('credit.checkout', compact('total', 'intent'));
+    // }
 
     // public function purchase(Request $request)
     // {

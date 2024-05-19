@@ -113,7 +113,7 @@
                   <dd class="text-base font-bold text-gray-900 dark:text-white"><div id="paypal-button-container"></div></dd>
               </dl>
 
-            <dl class="flex items-center justify-between gap-4  dark:border-gray-700">
+            {{-- <dl class="flex items-center justify-between gap-4  dark:border-gray-700">
                 <dt class="text-base font-bold text-gray-900 dark:text-white self-start"></dt>
                 <dd class="text-base font-bold text-gray-900 dark:text-white w-9/12 ">
                     <a  href="{{ route('credit.checkout')}}" style="background:#ffc439" class="w-full  text-sm text-white transition-colors hover:text-neutral-700 flex items-center justify-center gap-2 rounded-sm p-2" >
@@ -123,7 +123,7 @@
                     <span><i class='bx bx-credit-card-alt '></i></span>
                     </a>
                 </dd>
-            </dl>
+            </dl> --}}
             </div>
           </div>
         </div>
@@ -234,13 +234,4 @@
     }
 </script>
 
-<script>
-    $(document).ready(function() {
-        setTimeout(() => {
-            document.querySelector('.paypal-button-number-1').style.display = 'none'
-        }, 2000);
-
-    });
-
-</script>
 @endpush
