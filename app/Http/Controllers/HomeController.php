@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Category;
 use App\Models\Rating;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -26,7 +28,13 @@ class HomeController extends Controller
 
     public function  show(Book $book)
     {
-        return view('book.show' , compact('book'));
+        $bool = 0;
+        if(Auth::check()) {
+            $bool = auth()->user()->retedBook()->where('book_id' , $book->id)->first();
+        }
+
+
+        return view('book.show' , compact('book' , 'bool'));
     }
 
     public function  rate(Request $request , Book $book  )
@@ -42,5 +50,14 @@ class HomeController extends Controller
             $rate->value =  $request->value;
             $rate->save();
         }
+    }
+
+    public function  basket()
+    {
+
+        $userId = auth()->user()->id;
+        $books = User::find($userId)->basketBook;
+
+        return view('book.basket' , compact('books'));
     }
 }

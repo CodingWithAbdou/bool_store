@@ -38,6 +38,7 @@ Route::get('/search', [HomeController::class , 'search'])->name('search');
 
 Route::get('/book/show/{book}', [HomeController::class , 'show'])->name('book.justshow');
 Route::post('/book/{book}/rate', [HomeController::class , 'rate'])->name('book.rate');
+Route::get('/books/basket', [HomeController::class , 'basket'])->name('book.basket');
 
 Route::post('/addcart', [CartController::class , 'addToCart'])->name('add.cart');
 Route::get('/showcart', [CartController::class , 'showCart'])->name('show.cart');

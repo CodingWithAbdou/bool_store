@@ -27,7 +27,6 @@ class CartController extends Controller
             } else {
                 auth()->user()->booksInCart()->updateExistingPivot($book->id, ['number_of_copies'=> $newQuantity]);
             }
-
         } else {
             auth()->user()->booksInCart()->attach($request->bookid, ['number_of_copies'=> $request->inputQuantity]);
         }
