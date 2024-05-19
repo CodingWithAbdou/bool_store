@@ -87,6 +87,17 @@
                 </li>
             @endcan
 
+            @can('update-books')
+                <li class="nav-item mT-30 actived">
+                <a class="sidebar-link" href="{{route('shoping.all')}}">
+                    <span class="icon-holder">
+                        <i class="fa-solid fa-basket-shopping c-blue-900"></i>
+                    </span>
+                    <span class="title">المشتريات</span>
+                </a>
+                </li>
+            @endcan
+
             {{-- <li class="nav-item dropdown">
               <a class="dropdown-toggle" href="javascript:void(0);">
                 <span class="icon-holder">
